@@ -2,7 +2,7 @@
 
 ## 技术栈
 
-Vue全家桶、mockjs、echarts、Screenfull全屏插件等
+Vue全家桶、mockjs、echarts、Screenfull全屏插件、nprogress进度条插件等
 
 ## 项目展示
 
