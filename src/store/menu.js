@@ -29,8 +29,11 @@ export default {
         },
         // 关闭标签
         closeTag(state,val){
-            const resp = state.tabsList.findIndex(item=>item.name === val.name)
+            const resp = state.tabsList.findIndex(item=> item.name === val.name)
             state.tabsList.splice(resp,1)
+        },
+        clearTag(state,val){
+
         },
         // 菜单
         setMenu(state,menu){

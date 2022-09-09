@@ -54,6 +54,8 @@ export default {
     loginOut(){
       this.$store.commit('clearToken')
       this.$store.commit('clearMenu')
+      //清除tag
+
       this.$router.replace('/login' )
     },
     // 全屏

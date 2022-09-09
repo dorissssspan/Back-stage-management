@@ -1,6 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
+import NProgress from "nprogress"; // 引入进度条动画
+import 'nprogress/nprogress.css';  // 引入进度条样式
+
+// 进度条动画配置
+NProgress.configure({
+  easing: 'ease',  // 动画方式
+  speed: 500,  // 递增进度条的速度
+  showSpinner: false // 是否显示加载ico
+});
 
 Vue.use(VueRouter)
 
@@ -50,6 +59,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next)=>{
+  // 加载进度条动画
+  NProgress.start();
   store.commit('getToken')
   const token = store.state.user.token
   // token不存在 并且 当前页不等于登录页
@@ -61,6 +72,11 @@ router.beforeEach((to,from,next)=>{
   }else{
     next()
   }
+})
+
+router.afterEach(()=>{
+  // 关闭进度条动画
+  NProgress.done();
 })
 
 // 解决重复点击路由报错

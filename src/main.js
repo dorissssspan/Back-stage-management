@@ -2,12 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import http from 'axios'
 import './util/mock'
-// 引入less样式
-// import './style/index.less'
+// 引入less样式重置
 import './style/reset.less'
-// import './style/less/index.less'
+
 
 // 引入element
 import ElementUI from 'element-ui';
