@@ -1,5 +1,6 @@
 import Mock from 'mockjs'
 
+/* 用户管理模块 */
 // get请求从config.url获取参数，post从config.body中获取参数
 function param2Obj (url) {
   const search = url.split('?')[1]
@@ -16,9 +17,9 @@ function param2Obj (url) {
   )
 }
 
+// 模拟列表数据
 let List = []
 const count = 200
-
 for (let i = 0; i < count; i++) {
   List.push(
     Mock.mock({
@@ -41,7 +42,6 @@ export default {
    */
   getUserList: config => {
     const { name, page = 1, limit = 20 } = param2Obj(config.url)
-    console.log('name:' + name, 'page:' + page, '分页大小limit:' + limit)
     const mockList = List.filter(user => {
       if (name && user.name.indexOf(name) === -1 && user.addr.indexOf(name) === -1) return false
       return true
@@ -59,8 +59,8 @@ export default {
    * @return {{code: number, data: {message: string}}}
    */
   createUser: config => {
+    // 接收 name, addr, age, birth, sex 参数    数据转换为JS对象
     const { name, addr, age, birth, sex } = JSON.parse(config.body)
-    console.log(JSON.parse(config.body))
     List.unshift({
       id: Mock.Random.guid(),
       name: name,
@@ -93,22 +93,6 @@ export default {
       return {
         code: 20000,
         message: '删除成功'
-      }
-    }
-  },
-  /**
-   * 批量删除
-   * @param config
-   * @return {{code: number, data: {message: string}}}
-   */
-  batchremove: config => {
-    let { ids } = param2Obj(config.url)
-    ids = ids.split(',')
-    List = List.filter(u => !ids.includes(u.id))
-    return {
-      code: 20000,
-      data: {
-        message: '批量删除成功'
       }
     }
   },

@@ -8,23 +8,23 @@ Vue全家桶、mockjs、echarts、Screenfull全屏插件等
 
 登录：
 
-![image-20220909115032736](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220909115032736.png)
+![登录](F:\webdemo\后台管理系统\vue2-manage\assets\登录.png)
 
 首页：
 
-![image-20220909114335563](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220909114335563.png)
+![超级管理员界面](F:\webdemo\后台管理系统\vue2-manage\assets\超级管理员界面.png)
 
 商品管理：
 
-![image-20220909114430292](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220909114430292.png)
+![商品管理](F:\webdemo\后台管理系统\vue2-manage\assets\商品管理.png)
 
 用户管理：
 
-![image-20220909114445291](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220909114445291.png)
+![用户管理](F:\webdemo\后台管理系统\vue2-manage\assets\用户管理.png)
 
 普通用户登录后的界面：
 
-![image-20220909114917964](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220909114917964.png)
+![管理员界面](F:\webdemo\后台管理系统\vue2-manage\assets\管理员界面.png)
 
 ## 快速上手
 

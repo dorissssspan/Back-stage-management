@@ -1,19 +1,23 @@
 <template>
-    <div class="common-table">
-        <el-table :data="articleList" border style="width: 100%">
-            <el-table-column prop="stem" label="姓名"> </el-table-column>
-            <el-table-column prop="creator" label="年龄"> </el-table-column>
-            <el-table-column prop="likeCount" label="性别"> </el-table-column>
-            <el-table-column prop="views" label="出生日期"> </el-table-column>
-            <el-table-column prop="createdAt" label="地址"> </el-table-column>
+    <div class="users-table">
+        <el-table :data="userList" stripe style="width: 100%">
+            <!-- 渲染数据列 -->
+            <el-table-column
+                    show-overflow-tooltip
+                    v-for="(item, index) of tableList"
+                    :key="index"
+                    :label="item.label"
+                    :width="item.width ? item.width : 200"
+                    :prop="item.prop">
+            </el-table-column>
             <!--操作模块-->
-            <el-table-column label="操作" width="120px">
-                <template #default="{ row }">
+            <el-table-column label="操作" min-width="120px">
+                <template slot-scope="scope">
                     <div class="actions">
                         <!-- 编辑-->
-                        <i class="el-icon-edit-outline" @click="editArticle(row.id)"></i>
+                        <i class="el-icon-edit-outline" @click="editOps(scope.row)"></i>
                         <!-- 删除-->
-                        <i class="el-icon-delete" @click="delArticle(row.id)"></i>
+                        <i class="el-icon-delete" @click="delOps(scope.row)"></i>
                     </div>
                 </template>
             </el-table-column>
@@ -22,8 +26,8 @@
         <el-pagination
                 background
                 layout="prev, pager, next"
-                :total="total"
-                :page-size="pageSize"
+                :total="configList.total"
+                :current-page.sync="configList.page"
                 @current-change="onPageChange"
         >
         </el-pagination>
@@ -32,10 +36,51 @@
 
 <script>
     export default {
-        name: "Table"
+        name: "UserTable",
+        props:{
+            userList: Array,    // 数据
+            userLabel: Array,  // 标题
+            config: Object
+        },
+        data (){
+            return {
+                configList: this.config,
+                tableList: this.userLabel
+            }
+        },
+        methods:{
+            editOps(row){
+                // 拿到当前数据传给父组件
+                this.$emit('edit',row)
+            },
+            delOps(row){
+                this.$emit('del',row)
+            },
+            onPageChange(page){
+                this.$emit('changePage',page)
+            }
+        }
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+.users-table{
+    height: calc(100vh - 62px);
+    width: 100%;
+    background-color: white;
+    .el-pagination{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .actions{
+        display: flex;
+        justify-content: space-around;
+        font-size: 20px;
+        cursor: pointer;
+        >:hover{
+            color: rgb(64 158 255);
+        }
+    }
+}
 </style>
